@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Assinatura | EBD</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body class="bg-slate-50 font-['Roboto'] antialiased min-h-screen">
+    <main class="max-w-2xl mx-auto px-4 py-8 lg:py-12">
+        <header class="text-center mb-10">
+            <img src="https://www.ebdgrupo.com.br/wp-content/uploads/2019/08/LOGO-EBD-correto-1024x673.png"
+                alt="Logo Grupo EBD" class="w-28 mx-auto mb-4 drop-shadow-sm">
+            <h1 class="text-2xl font-light text-slate-800 tracking-tight">Gerador de <span
+                    class="font-bold text-[#ed3237]">Assinaturas</span></h1>
+            <p class="text-slate-500 text-sm mt-2">Padronização institucional para colaboradores.</p>
+        </header>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 mb-6">
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">1. Segmento de
+                Atuação</label>
+            <select id="segmento"
+                class="w-full bg-slate-50 border border-slate-200 text-slate-700 text-sm rounded-xl p-3.5 outline-none focus:ring-2 focus:ring-[#ed3237]/20 focus:border-[#ed3237] transition-all cursor-pointer">
+                <option value="">Selecione seu segmento...</option>
+                <option value="distribuicao">Distribuição</option>
+                <option value="concessionarias">Concessionárias</option>
+                <option value="fazendas">Fazendas</option>
+            </select>
+        </div>
+
+        <section id="form-colaborador" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">2. Dados do
+                    Colaborador</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="md:col-span-2">
+                        <label class="text-[11px] font-bold text-slate-500 mb-1 ml-1">NOME COMPLETO</label>
+                        <input type="text" id="nome" placeholder="Ex: Hudson Coutinho"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:bg-white focus:ring-2 focus:ring-[#ed3237]/20 focus:border-[#ed3237] transition-all outline-none">
+                    </div>
+                    <div><label class="text-[11px] font-bold text-slate-500 mb-1 ml-1">CARGO</label><input type="text"
+                            id="cargo"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:bg-white outline-none">
+                    </div>
+                    <div><label class="text-[11px] font-bold text-slate-500 mb-1 ml-1">SETOR</label><input type="text"
+                            id="setor"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:bg-white outline-none">
+                    </div>
+                    <div class="md:col-span-2"><label class="text-[11px] font-bold text-slate-500 mb-1 ml-1">NOME DA
+                            EMPRESA</label><input type="text" id="empresa"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:bg-white outline-none">
+                    </div>
+                    <div><label class="text-[11px] font-bold text-slate-500 mb-1 ml-1">E-MAIL</label><input type="email"
+                            id="email"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:bg-white outline-none">
+                    </div>
+                    <div>
+                        <label class="text-[11px] font-bold text-slate-500 mb-1 ml-1">TELEFONE</label>
+                        <input type="tel" id="tel" maxlength="15"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:bg-white outline-none mb-3">
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="checkbox" id="isWhatsapp"
+                                class="w-4 h-4 rounded border-slate-300 text-[#ed3237] focus:ring-[#ed3237] accent-[#ed3237]">
+                            <span
+                                class="text-xs font-medium text-slate-500 group-hover:text-[#ed3237] transition-colors">Este
+                                número é WhatsApp?</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">3.
+                    Pré-visualização</label>
+                <div class="preview-container scrollbar-hide">
+                    <div class="signature-scaler">
+                        <div id="final-signature"></div>
+                    </div>
+                </div>
+                <button id="btn-copy"
+                    class="w-full bg-[#ed3237] hover:bg-[#c2272c] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#ed3237]/20 transition-all active:scale-[0.95] mt-6">
+                    COPIAR ASSINATURA
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast"
+        class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform transition-all duration-500 translate-y-[-150%] opacity-0 w-[90%] sm:w-auto">
+        <div
+            class="bg-slate-900 text-white px-4 py-2.5 sm:px-6 sm:py-3 rounded-full shadow-2xl flex items-center justify-center gap-2 sm:gap-3 border border-slate-700 mx-auto">
+            <div class="bg-green-500 rounded-full p-0.5 sm:p-1 flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:h-4 text-white" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            <span class="text-[12px] sm:text-sm font-medium tracking-wide whitespace-nowrap">Copiado para a área de
+                transferência!</span>
+        </div>
+    </div>
+
+    <script type="module" src="src/js/main.js"></script>
+</body>
+
+</html>

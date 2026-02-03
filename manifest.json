@@ -1,0 +1,32 @@
+{
+  "name": "Gerador EBD",
+  "short_name": "EBD",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ed3237",
+  "icons": [
+    {
+      "src": "https://www.ebdgrupo.com.br/wp-content/uploads/2019/08/LOGO-EBD-correto-1024x673.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+{
+  "name": "Gerador EBD",
+  "short_name": "EBD",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ed3237",
+  "icons": [
+    {
+      "src": "https://www.ebdgrupo.com.br/wp-content/uploads/2019/08/LOGO-EBD-correto-1024x673.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
